@@ -28,8 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: { 
         notNull: true,
-        notEmpty: true,
-        len: [1,100]
+        notEmpty: true
       }
     }
   }, {
