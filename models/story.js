@@ -14,8 +14,24 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Story.init({
-    title: DataTypes.STRING,
-    sentences: DataTypes.STRING
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: { 
+        notNull: true,
+        notEmpty: true,
+        len:[4]
+      }
+    },
+    sentences: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: { 
+        notNull: true,
+        notEmpty: true,
+        len: [1,100]
+      }
+    }
   }, {
     sequelize,
     modelName: 'Story',
