@@ -17,10 +17,8 @@ class Controller {
 
     static getStory (req,res,next) { 
         Story.findAll({ 
-            order : [['createdAt','DESC']],
-            limit : 3
-        }
-        )
+            order : [['createdAt','DESC']]
+        })
             .then((stories) => { 
                 res.status(200).json(stories)
             }) 
