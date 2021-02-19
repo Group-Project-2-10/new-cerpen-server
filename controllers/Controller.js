@@ -30,12 +30,21 @@ class Controller {
     static postStory (req,res,next) { 
         const newStory = { 
             title: req.body.title,
-            sentences: req.body.sentences
-        } 
+            sentences: req.body.sentences,
+            UserId: req.body.UserId
+        }
+        const obj = {}
         Story.create(newStory)
             .then((story) => { 
-                res.status(201).json(story)
-            }) 
+                obj.story = story
+                return User.findByPk(newStory.UserId)
+                
+            })
+            .then((response) => {
+                console.log(response)
+                obj.user = response
+                res.status(201).json(obj)
+            })
             .catch((err) => { 
                 res.send(err)
             })
