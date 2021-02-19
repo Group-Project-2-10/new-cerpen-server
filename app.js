@@ -16,7 +16,9 @@ const io = require('socket.io')(http, {
 io.on('connection',(socket) => {
     console.log('a user connected')
     socket.on("newMessage", (data) => {
+        console.log(data,'data dari client sampek di server')
         socket.broadcast.emit('serverMessage', data)
+        socket.emit('serverMessage', data)
     })
 })
 
