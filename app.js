@@ -18,7 +18,14 @@ io.on('connection',(socket) => {
     socket.on("newMessage", (data) => {
         console.log(data,'data dari client sampek di server')
         socket.broadcast.emit('serverMessage', data)
-        socket.emit('serverMessage', data)
+        // socket.emit('serverMessage', data)
+    })
+    socket.on("gameFinished", (data) => {
+        console.log(data, 'flag dari client')
+        socket.broadcast.emit('gameFinished', data)
+    })
+    socket.on("gameStart", (data) => {
+        socket.broadcast.emit('gameStart', data)
     })
 })
 
